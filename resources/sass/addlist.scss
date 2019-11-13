@@ -1,0 +1,79 @@
+.blockall{
+    text-align: center;
+    color: white;
+  }
+  ///////////////////title table///////////////
+  .cell
+  {
+      padding: 13px;
+      border-radius: 10px;
+
+  }
+
+  .seller-price-cell{
+  background-color: #FFD21C;
+  }
+
+  .buyer-price-cell{
+    background-color: #24AFFF;
+
+  }
+
+  .counter-cell{
+    border-radius: 50px;
+    background-color: #5C5C5C;
+    width: 50px;
+    margin: auto;
+  }
+
+  .wanted-price-cell{
+    background-color: #0ACC51;
+  }
+
+  .sold-cell{
+    background-color: #ED5F00;
+  }
+
+
+
+  .countone
+  {
+      background-color: rgba(66, 60, 60, 0.8);
+      border-radius: 50px;
+      width: 50px;
+      margin: auto;
+      color: whitesmoke;
+      font-weight: bold;
+  }
+
+  .selfone
+  {
+      background-color: #FFD21C;
+      color: whitesmoke;
+      font-size: 20px;
+      font-weight: bold;
+  }
+
+  .buythree
+  {
+      background-color: rgb(27, 118, 236, 0.8);
+      color: whitesmoke;
+      font-size: 20px;
+      font-weight: bold;
+  }
+
+  .wantfour
+  {
+      background-color: rgba(28, 184, 28, 0.8);
+      color: whitesmoke;
+      font-size: 20px;
+      font-weight: bold;
+  }
+
+  .soldone
+  {
+      background-color: rgba(226, 36, 36, 0.8);
+      color: whitesmoke;
+      font-size: 20px;
+      font-weight: bold;
+  }

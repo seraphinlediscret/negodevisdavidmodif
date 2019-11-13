@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+
+<html>
+        <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
+<body>
+
+<button onclick="popupLoader()">valider la proposition</button>
+
+<div id="afficheLoader" class="background_loader">
+    <canvas id="progress" width="1350" height="550" ></canvas>
+    <div class="test">
+      <section id="loader" class="section_loader">
+        <span></span>
+         <p class="test_align">ANALYSE</p>
+      </section>
+    </div>
+</div>
+
+<style>
+
+.test{
+    text-align: center;
+    font-size: 1rem;
+    width: 150px;
+    height: 150px;
+    border-radius: 80px;
+    background: blue;
+    position: absolute;
+    top: 12.3rem;
+    left: 37.3rem;
+    padding: 5px;
+}
+
+.test_align{
+  color: white;
+  align-items: baseline;
+  margin-top: 55px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 25px;
+}
+
+  #loader{
+    display:none;
+    font-size:2em;
+        }
+
+   .background_loader{
+    border-radius: 20px;
+    background: rgba(253, 253, 253, 0.76) ;
+    font-family: 'Orbitron', sans-serif;
+    position: absolute;
+    top: 2%;
+    left: 0;
+    height: 600px;
+    width: 100%;
+    display: none;
+}
+
+</style>
+
+
+<script>
+
+function popupLoader() {
+  	const aleatoire = Math.floor(Math.random() * 4000) + 5000;;
+    const delay = 5;
+
+    let i = 0;
+    let cvs = document.getElementById('progress');
+    let affiche = document.getElementById("afficheLoader");
+
+    if(cvs.getContext){
+        let ctx = cvs.getContext('2d');
+        const x = cvs.width*0.5;
+        const y = cvs.height*0.5;
+        const r = 120;
+        let interval = setInterval(function() {
+            i += delay;
+            let multiplicator = (i / aleatoire) * 2;
+            ctx.beginPath();
+            ctx.arc(x, y, r, 0, multiplicator*Math.PI, false)
+            ctx.strokeStyle = "#FFBF00";
+            ctx.lineWidth = 27;
+            ctx.stroke();
+            if(i >= aleatoire+(delay)){clearInterval(interval);}
+        }, delay)
+
+        affiche.style.display="initial";
+        loader.style.display="initial";
+        setTimeout(function(){
+            affiche.style.display="";
+            loader.style.display = "none";
+        }, aleatoire+(aleatoire/5));
+        setTimeout(function(){
+            ctx.clearRect(0,0,cvs.width, cvs.height);
+        }, aleatoire+(aleatoire/4.5));
+    }
+}
+
+</script>
+
+
+</body>
+</html>

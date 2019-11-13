@@ -1,0 +1,44 @@
+.size_time{font-size: 1.6em;}
+#titre_nbTour{font-size:1.6em;}
+#divini{font-size:1.3em;}
+
+
+//\/\LOADER\/\//
+.test{
+    text-align: center;
+    font-size: 1rem;
+    width: 150px;
+    height: 150px;
+    border-radius: 80px;
+    background: rgba(0, 0, 255, 0.833);
+    position: absolute;
+    top: 12.3rem;
+    left: 37.5rem;
+    padding: 5px;
+}
+
+.test_align{
+  color: whitesmoke;
+  align-items: baseline;
+  margin-top: 55px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 25px;
+}
+
+  #loader{
+    display:none;
+    font-size:2em;
+        }
+
+   .background_loader{
+    background: rgba(253, 253, 253, 0.76) ;
+    font-family: 'Orbitron', sans-serif;
+    position: absolute;
+    top: 1%;
+    left: 0;
+    height: 600px;
+    width: 100%;
+    display: none;
+}
+
+

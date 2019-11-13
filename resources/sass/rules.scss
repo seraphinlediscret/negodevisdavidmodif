@@ -1,0 +1,41 @@
+// ******GENERAL APPEARANCE****** //
+// ******RULES****** //
+// Bloc's organisation
+.negociation-rules-title{background:#24AFFF;font-size: 2.7rem;}
+.rules-listing{background: rgba(255, 255, 255, 0.5);}
+// Rules' listing's appearance
+#rule{font-size: 1.5rem;}
+#rule-illustration
+{
+    background: whitesmoke;
+    border-top-left-radius: 5%;
+    border-bottom-right-radius: 5%;
+    width: 30vw;
+    height: 45vh;
+}
+#rule-img
+{
+    display: block;
+    margin: auto;
+    margin-top: 10vh;
+}
+.rule-association{display: flex;}
+#rule-declaration{font-size: 1.2rem;}
+#rule-title
+{
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 2vh ;
+    padding-bottom: 3%;
+}
+// Organisation of the rule's pagination
+.rules-pagination{list-style-type: none;font-size: 1.5em;}
+.rules-pagination-elmt:hover{cursor: pointer;color: blue;}
+.shortcuts{margin: auto;}
+//******BUTTONS******//
+//Buttons' appearance
+.negotiation-button{background:#24AFFF;}
+.home-back-button{background:#24AFFF;}
+//Buttons' action
+.negotiation-button:hover{cursor: pointer;}
+.home-back-button:hover{cursor: pointer;}
