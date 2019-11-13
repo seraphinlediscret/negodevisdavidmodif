@@ -19334,12 +19334,16 @@ var showtour = document.getElementById("showtour"); //nombre de tour
 var showrab = document.getElementById("showrab"); // rabais
 
 var showtime = document.getElementById("minutes"); //timer
+
+var xprop = document.getElementById("xprop"); // value prop (25000)
 // array empty//
 
 var tablefind = []; // operation trappes //
 
 var optrap = priceminshow.value * centshow.value / 100;
-var nbtrap = trapshow.value; /////validation paramètres////
+var nbtrap = trapshow.value;
+var nbr = 20000; // remplacer par l'algo de Philippe
+/////validation paramètres////
 
 function checkAllValid() {
   var allValid = true;
@@ -19439,6 +19443,7 @@ function action() {
     console.log(nbtrap + " décrémentation nombre de trap");
   } else {
     ////value want > last value////
+    var discount = Math.round((priceini.textContent - nbr) * 100 / priceini.textContent);
     var last = tablefind[tablefind.length - 1];
 
     if (count > 0) {
@@ -19459,9 +19464,10 @@ function action() {
         var tdthree = document.createElement("TD");
         var t = document.createTextNode(actionshow);
         var tdfour = document.createElement("TD");
-        var want = document.createTextNode("25000");
+        var want = document.createTextNode(nbr); //// api de Philippe à rajouter
+
         var tdfive = document.createElement("TD");
-        var sold = document.createTextNode("20%"); //////////////////////DIV in TD////////////////
+        var sold = document.createTextNode(discount + " %"); //////////////////////DIV in TD////////////////
 
         var divone = document.createElement("DIV");
         var divtwo = document.createElement("DIV");

@@ -53,11 +53,6 @@
               <span id="colon">:</span>
               <span id="seconds">00</span>
           </div>
-          <!--<div id="filler"></div>-->
-         <!-- <div id="buttons">
-              <button id="work">Work</button>
-              <button id="stop">Stop</button>
-          </div>-->
       </div>
   </div>
 </div>
@@ -142,7 +137,7 @@
             <div class="cardinput col-4">
               <label for="validationCustom01" class="titi control-label">Prix du devis :</label>
               <div class="input-group">
-              <input type="text" class="form-control field" id="validationCustom01" placeholder="Entrez votre prix initial" value="2000" required>
+              <input type="text" class="form-control field" id="validationCustom01" placeholder="Entrez votre prix initial" value="30000" required>
               <div class="input-group-append">
                 <span class="input-group-text unit">€</span>
               </div>
@@ -186,7 +181,7 @@
       <div class="cardinput col-4">
         <label for="validationCustom05" class="titi">Prix minimum de vente</label>
         <div class="input-group">
-        <input type="text" class="form-control field" id="validationCustom05" placeholder="Entrez votre prix minimum" value="1000" required>
+        <input type="text" class="form-control field" id="validationCustom05" placeholder="Entrez votre prix minimum" value="20000" required>
         <div class="input-group-append">
           <span class="input-group-text unitmin">€</span>
         </div>

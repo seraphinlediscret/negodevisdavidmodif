@@ -39,6 +39,7 @@ let showwant = document.getElementById("showwant");//prix proposé
 let showtour = document.getElementById("showtour");//nombre de tour
 let showrab = document.getElementById("showrab");// rabais
 let showtime = document.getElementById("minutes");//timer
+let xprop = document.getElementById("xprop");// value prop (25000)
 
 // array empty//
 let tablefind = [];
@@ -46,6 +47,8 @@ let tablefind = [];
 // operation trappes //
 let optrap = priceminshow.value*centshow.value/100
 let nbtrap = trapshow.value;
+
+let nbr = 20000; // remplacer par l'algo de Philippe
 
 /////validation paramètres////
 function checkAllValid()
@@ -93,7 +96,7 @@ function openParam() {
     console.log(trapshow.value + " trappes");
     console.log(centshow.value + " % du prix minimum");
     console.log(priceminshow.value + " prix minimum");
-    console.log(priceminshow.value*centshow.value/100 + " prix à ne pas dépasser")
+    console.log(priceminshow.value*centshow.value/100 + " prix à ne pas dépasser");
 
     //envoie de données//
 
@@ -151,6 +154,8 @@ function action() {
     } else {
 
      ////value want > last value////
+     let discount = Math.round((priceini.textContent - nbr)*100/priceini.textContent);
+    
      let last = tablefind[tablefind.length -1];
      if (count > 0) {
          tablefind.push(actionshow);
@@ -172,9 +177,9 @@ function action() {
     var tdthree = document.createElement("TD");
     var t = document.createTextNode(actionshow);
     var tdfour = document.createElement("TD");
-    var want = document.createTextNode("25000");
+    var want = document.createTextNode(nbr); //// api de Philippe à rajouter
     var tdfive = document.createElement("TD");
-    var sold = document.createTextNode("20%");
+    var sold = document.createTextNode(discount + " %");
 
     //////////////////////DIV in TD////////////////
 
