@@ -19436,7 +19436,7 @@ function action() {
     window.location.reload();
   }
 
-  if (actionshow < optrap) {
+  if (actionshow <= optrap) {
     alert("Cette proposition n'est pas sérieuse il ne vous reste plus que " + "[ " + nbtrap + " ] chance avant que la négociation soit annulée");
     nbtrap--;
     count--;
@@ -19681,7 +19681,7 @@ var pomodoro = {
   },
   startWork: function startWork() {
     this.resetVariables(this.minutesDom.innerHTML, this.seconds = 0, true);
-    console.log(this.minutesDom.innerHTML);
+    console.log(this.minutesDom.innerHTML + " minutes");
   },
   //changement front(minuteur) selon le temps//
   dangerMinuteur: function dangerMinuteur() {

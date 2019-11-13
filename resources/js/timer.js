@@ -47,7 +47,7 @@ var pomodoro = {
     },
     startWork: function() {
     this.resetVariables(this.minutesDom.innerHTML, this.seconds = 0, true);
-        console.log(this.minutesDom.innerHTML);
+        console.log(this.minutesDom.innerHTML + " minutes");
     },
     //changement front(minuteur) selon le temps//
     dangerMinuteur: function(){

@@ -146,7 +146,7 @@ function action() {
     if (nbtrap == 0){
         window.location.reload();
     }
-    if (actionshow < optrap) {
+    if (actionshow <= optrap) {
         alert("Cette proposition n'est pas sérieuse il ne vous reste plus que "+"[ "+ nbtrap +" ] chance avant que la négociation soit annulée");
         nbtrap--;
         count --;
