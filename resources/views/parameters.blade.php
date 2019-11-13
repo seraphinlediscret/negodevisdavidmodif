@@ -142,7 +142,7 @@
             <div class="cardinput col-4">
               <label for="validationCustom01" class="titi control-label">Prix du devis :</label>
               <div class="input-group">
-              <input type="text" class="form-control field" id="validationCustom01" placeholder="Entrez votre prix initial" value="5" required>
+              <input type="text" class="form-control field" id="validationCustom01" placeholder="Entrez votre prix initial" value="2000" required>
               <div class="input-group-append">
                 <span class="input-group-text unit">€</span>
               </div>
@@ -154,7 +154,7 @@
 
       <div class="cardinput col-4">
         <label for="validationCustom02" class="titi">Nombre de trappes</label>
-        <input type="number" class="form-control field nbt" id="validationCustom02" placeholder="Entrez votre nombre d'essais" value="5" required>
+        <input type="number" class="form-control field nbt" id="validationCustom02" placeholder="Entrez votre nombre d'essais" value="3" required>
         <div class="valid-feedback">
             Validé !
         </div>
@@ -163,7 +163,7 @@
       <div class="cardinput col-4">
         <label for="validationCustom03" class="titi">Taux de la trappe</label>
         <div class="input-group mb-3">
-        <input type="number" class="form-control field" id="validationCustom03 " placeholder="Entrez le taux de trappe" value="5" required>
+        <input type="number" class="form-control field" id="validationCustom03" placeholder="Entrez le taux de trappe" value="20" required>
         <div class="input-group-append">
           <span class="input-group-text unitpour">%</span>
         </div>
@@ -186,7 +186,7 @@
       <div class="cardinput col-4">
         <label for="validationCustom05" class="titi">Prix minimum de vente</label>
         <div class="input-group">
-        <input type="text" class="form-control field" id="validationCustom05 " placeholder="Entrez votre prix minimum" value="5" required>
+        <input type="text" class="form-control field" id="validationCustom05" placeholder="Entrez votre prix minimum" value="1000" required>
         <div class="input-group-append">
           <span class="input-group-text unitmin">€</span>
         </div>

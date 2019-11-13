@@ -25,11 +25,11 @@ let theEND = document.getElementById("theEND");
 //envoie de données//
 let priceshow =document.getElementById("validationCustom01");//prix initial
 let trapshow = document.getElementById("validationCustom02");//trappes
-let rabshow = document.getElementById("validationCustom03");//rabais%
+let centshow = document.getElementById("validationCustom03");//rabais%
 let tourshow = document.getElementById("validationCustom04");//nombre de tour
 let priceminshow = document.getElementById("validationCustom05");//prix minimum de vente
 let timeshow = document.getElementById("validationCustom06");//le temps
-let actionshow = document.getElementById("validationCustom07");//
+let actionshow = document.getElementById("validationCustom07");//input
 
 //reception affichage de données //
 let showcount = document.getElementById("count");///le count du tableau
@@ -41,8 +41,11 @@ let showrab = document.getElementById("showrab");// rabais
 let showtime = document.getElementById("minutes");//timer
 
 // array empty//
-
 let tablefind = [];
+
+// operation trappes //
+let optrap = priceminshow.value*centshow.value/100
+let nbtrap = trapshow.value;
 
 /////validation paramètres////
 function checkAllValid()
@@ -72,7 +75,7 @@ function forcard(event) {
 ///retour///
 function ret() {
     card.style.display = "none";
-    valid.style.display="flex";
+    valid.style.display= "flex";
 }
 ///ouvrir les paramètres///
 function openParam() {
@@ -87,6 +90,10 @@ function openParam() {
     open.style.display = "none";
     well.style.display = "none";
     divini.style.display = "initial";
+    console.log(trapshow.value + " trappes");
+    console.log(centshow.value + " % du prix minimum");
+    console.log(priceminshow.value + " prix minimum");
+    console.log(priceminshow.value*centshow.value/100 + " prix à ne pas dépasser")
 
     //envoie de données//
 
@@ -116,10 +123,8 @@ list.addEventListener('click', function(ev) {
     }
  }, false);
 
-let countClass = 0;
 function action() {
 
-    
     /////////////ajout list////////////////
     var tableau = document.getElementById("theTABLE");
     var tr = document.createElement("TR");
@@ -134,6 +139,16 @@ function action() {
         count++
         tableau.appendChild(tr);
     }
+    ////////////trappes %////////////
+    if (nbtrap == 0){
+        window.location.reload();
+    }
+    if (actionshow < optrap) {
+        alert("Cette proposition n'est pas sérieuse il ne vous reste plus que "+"[ "+ nbtrap +" ] chance avant que la négociation soit annulée");
+        nbtrap--;
+        count --;
+        console.log(nbtrap +" décrémentation nombre de trap");
+    } else {
 
      ////value want > last value////
      let last = tablefind[tablefind.length -1];
@@ -187,7 +202,7 @@ function action() {
     divone.className ="cell countone";
     divtwo.className ="cell selfone";
     divtwo.id = "xval";
-    divthree.className ="cell buythree buythree"+countClass++;
+    divthree.className ="cell buythree";
     divfour.className ="cell wantfour";
     divfour.id = "xprop";
     divfive.className ="cell soldone";
@@ -231,9 +246,8 @@ function action() {
 
     stop.style.display= "none";
      }
-     
-     ////////////trappes////////////
-     console.log(count);
+
+     console.log(count +" compteur");
 
     //  ////////////loader/////////////
      const aleatoire = Math.floor(Math.random() * 4000) + 5000;;
@@ -278,6 +292,7 @@ function action() {
          setTimeout(function(){
              tableau.style.display = "";
              }, aleatoire);
+        }
       }
     }
   }

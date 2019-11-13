@@ -19310,7 +19310,7 @@ var priceshow = document.getElementById("validationCustom01"); //prix initial
 
 var trapshow = document.getElementById("validationCustom02"); //trappes
 
-var rabshow = document.getElementById("validationCustom03"); //rabais%
+var centshow = document.getElementById("validationCustom03"); //rabais%
 
 var tourshow = document.getElementById("validationCustom04"); //nombre de tour
 
@@ -19318,7 +19318,7 @@ var priceminshow = document.getElementById("validationCustom05"); //prix minimum
 
 var timeshow = document.getElementById("validationCustom06"); //le temps
 
-var actionshow = document.getElementById("validationCustom07"); //
+var actionshow = document.getElementById("validationCustom07"); //input
 //reception affichage de données //
 
 var showcount = document.getElementById("count"); ///le count du tableau
@@ -19336,7 +19336,10 @@ var showrab = document.getElementById("showrab"); // rabais
 var showtime = document.getElementById("minutes"); //timer
 // array empty//
 
-var tablefind = []; /////validation paramètres////
+var tablefind = []; // operation trappes //
+
+var optrap = priceminshow.value * centshow.value / 100;
+var nbtrap = trapshow.value; /////validation paramètres////
 
 function checkAllValid() {
   var allValid = true;
@@ -19378,7 +19381,11 @@ function closeParam() {
   appli.style.display = "initial";
   open.style.display = "none";
   well.style.display = "none";
-  divini.style.display = "initial"; //envoie de données//
+  divini.style.display = "initial";
+  console.log(trapshow.value + " trappes");
+  console.log(centshow.value + " % du prix minimum");
+  console.log(priceminshow.value + " prix minimum");
+  console.log(priceminshow.value * centshow.value / 100 + " prix à ne pas dépasser"); //envoie de données//
 
   priceini.textContent = priceshow.value;
   showcount.textContent = tourshow.value;
@@ -19404,7 +19411,6 @@ list.addEventListener('click', function (ev) {
     ev.target.classList.toggle('checked');
   }
 }, false);
-var countClass = 0;
 
 function action() {
   /////////////ajout list////////////////
@@ -19419,149 +19425,160 @@ function action() {
   } else {
     count++;
     tableau.appendChild(tr);
-  } ////value want > last value////
+  } ////////////trappes %////////////
 
 
-  var last = tablefind[tablefind.length - 1];
+  if (nbtrap == 0) {
+    window.location.reload();
+  }
 
-  if (count > 0) {
-    tablefind.push(actionshow);
-    console.log(last + " table");
+  if (actionshow < optrap) {
+    alert("Cette proposition n'est pas sérieuse il ne vous reste plus que " + "[ " + nbtrap + " ] chance avant que la négociation soit annulée");
+    nbtrap--;
+    count--;
+    console.log(nbtrap + " décrémentation nombre de trap");
+  } else {
+    ////value want > last value////
+    var last = tablefind[tablefind.length - 1];
 
-    if (actionshow <= last) {
-      alert("Veuillez faire une proposition supérieure à l'ancienne !");
-      count--;
-    } else {
-      document.getElementById("validationCustom07").value = "";
-      document.getElementById("validationCustom01").value = ""; ////////////////////////TD/////////////////////////
+    if (count > 0) {
+      tablefind.push(actionshow);
+      console.log(last + " table");
 
-      var tdone = document.createElement("TD");
-      var txt = document.createTextNode(count);
-      var tdtwo = document.createElement("TD");
-      var vend = document.createTextNode(pricetest);
-      var tdthree = document.createElement("TD");
-      var t = document.createTextNode(actionshow);
-      var tdfour = document.createElement("TD");
-      var want = document.createTextNode("25000");
-      var tdfive = document.createElement("TD");
-      var sold = document.createTextNode("20%"); //////////////////////DIV in TD////////////////
+      if (actionshow <= last) {
+        alert("Veuillez faire une proposition supérieure à l'ancienne !");
+        count--;
+      } else {
+        document.getElementById("validationCustom07").value = "";
+        document.getElementById("validationCustom01").value = ""; ////////////////////////TD/////////////////////////
 
-      var divone = document.createElement("DIV");
-      var divtwo = document.createElement("DIV");
-      var divthree = document.createElement("DIV");
-      var divfour = document.createElement("DIV");
-      var divfive = document.createElement("DIV"); //////////////////TD class///////////////////
+        var tdone = document.createElement("TD");
+        var txt = document.createTextNode(count);
+        var tdtwo = document.createElement("TD");
+        var vend = document.createTextNode(pricetest);
+        var tdthree = document.createElement("TD");
+        var t = document.createTextNode(actionshow);
+        var tdfour = document.createElement("TD");
+        var want = document.createTextNode("25000");
+        var tdfive = document.createElement("TD");
+        var sold = document.createTextNode("20%"); //////////////////////DIV in TD////////////////
 
-      tr.className = "trTABLE";
-      tdtwo.className = "blockall selfed"; // vendeur
+        var divone = document.createElement("DIV");
+        var divtwo = document.createElement("DIV");
+        var divthree = document.createElement("DIV");
+        var divfour = document.createElement("DIV");
+        var divfive = document.createElement("DIV"); //////////////////TD class///////////////////
 
-      tdtwo.id = "y";
-      tdthree.className = "blockall buyed"; //acheteur
+        tr.className = "trTABLE";
+        tdtwo.className = "blockall selfed"; // vendeur
 
-      tdone.className = "blockall countered"; //count
+        tdtwo.id = "y";
+        tdthree.className = "blockall buyed"; //acheteur
 
-      tdfour.className = "blockall wanted"; //prix proposé
+        tdone.className = "blockall countered"; //count
 
-      tdfour.id = "priceprop";
-      tdfive.className = "blockall solded"; //rabais %
-      ///////////// DIV class////////////////////////
+        tdfour.className = "blockall wanted"; //prix proposé
 
-      divone.className = "cell countone";
-      divtwo.className = "cell selfone";
-      divtwo.id = "xval";
-      divthree.className = "cell buythree buythree" + countClass++;
-      divfour.className = "cell wantfour";
-      divfour.id = "xprop";
-      divfive.className = "cell soldone"; ////////////TD appendChild////////////////
+        tdfour.id = "priceprop";
+        tdfive.className = "blockall solded"; //rabais %
+        ///////////// DIV class////////////////////////
 
-      tr.appendChild(tdtwo); //vendeur
-      //tr.appendChild(t); // value
+        divone.className = "cell countone";
+        divtwo.className = "cell selfone";
+        divtwo.id = "xval";
+        divthree.className = "cell buythree";
+        divfour.className = "cell wantfour";
+        divfour.id = "xprop";
+        divfive.className = "cell soldone"; ////////////TD appendChild////////////////
 
-      tr.appendChild(tdthree); //count
+        tr.appendChild(tdtwo); //vendeur
+        //tr.appendChild(t); // value
 
-      tr.appendChild(tdone); //ini
+        tr.appendChild(tdthree); //count
 
-      tr.appendChild(tdfour); //prix proposé
+        tr.appendChild(tdone); //ini
 
-      tr.appendChild(tdfive); //rabais %
-      //////DIV appendChild//////////////
+        tr.appendChild(tdfour); //prix proposé
 
-      divone.appendChild(txt); //ini
+        tr.appendChild(tdfive); //rabais %
+        //////DIV appendChild//////////////
 
-      tdone.appendChild(divone);
-      divtwo.appendChild(vend); //vendeur
+        divone.appendChild(txt); //ini
 
-      tdtwo.appendChild(divtwo);
-      divthree.appendChild(t); //count
+        tdone.appendChild(divone);
+        divtwo.appendChild(vend); //vendeur
 
-      tdthree.appendChild(divthree);
-      divfour.appendChild(want); //prixproposé
+        tdtwo.appendChild(divtwo);
+        divthree.appendChild(t); //count
 
-      tdfour.appendChild(divfour);
-      divfive.appendChild(sold); //rabais %
+        tdthree.appendChild(divthree);
+        divfour.appendChild(want); //prixproposé
 
-      tdfive.appendChild(divfive); //////button invisible/////
+        tdfour.appendChild(divfour);
+        divfive.appendChild(sold); //rabais %
 
-      visibbutton.style.display = "none";
-      yesorno.style.display = "flex"; ///////decrementation compteur//////
+        tdfive.appendChild(divfive); //////button invisible/////
 
-      showcount.textContent--;
+        visibbutton.style.display = "none";
+        yesorno.style.display = "flex"; ///////decrementation compteur//////
 
-      if (showcount.textContent < 1) {
-        stop.style.display = "flex";
-        thenego.style.display = "none";
-      } else if (showcount.textContent == 1) {
-        stop.style.display = "none";
-      } ////////////trappes////////////
+        showcount.textContent--;
 
+        if (showcount.textContent < 1) {
+          stop.style.display = "flex";
+          thenego.style.display = "none";
+        } else if (showcount.textContent == 1) {
+          stop.style.display = "none";
+        }
 
-      console.log(count); //  ////////////loader/////////////
+        console.log(count + " compteur"); //  ////////////loader/////////////
 
-      var aleatoire = Math.floor(Math.random() * 4000) + 5000;
-      ;
-      var delay = 4;
-      var i = 0;
-      var cvs = document.getElementById('progress');
+        var aleatoire = Math.floor(Math.random() * 4000) + 5000;
+        ;
+        var delay = 4;
+        var i = 0;
+        var cvs = document.getElementById('progress');
 
-      var _affiche = document.getElementById("afficheLoader");
+        var _affiche = document.getElementById("afficheLoader");
 
-      var afficheCache = document.getElementById("yesorno");
+        var afficheCache = document.getElementById("yesorno");
 
-      if (cvs.getContext) {
-        var ctx = cvs.getContext('2d');
-        var x = cvs.width * 0.5;
-        var y = cvs.height * 0.5;
-        var r = 120;
-        var interval = setInterval(function () {
-          i += delay;
-          var multiplicator = i / aleatoire * 2;
-          ctx.beginPath();
-          ctx.arc(x, y, r, 0, multiplicator * Math.PI, false);
-          ctx.strokeStyle = "#FFBF00";
-          ctx.lineWidth = 27;
-          ctx.stroke();
+        if (cvs.getContext) {
+          var ctx = cvs.getContext('2d');
+          var x = cvs.width * 0.5;
+          var y = cvs.height * 0.5;
+          var r = 120;
+          var interval = setInterval(function () {
+            i += delay;
+            var multiplicator = i / aleatoire * 2;
+            ctx.beginPath();
+            ctx.arc(x, y, r, 0, multiplicator * Math.PI, false);
+            ctx.strokeStyle = "#FFBF00";
+            ctx.lineWidth = 27;
+            ctx.stroke();
 
-          if (i >= aleatoire + delay) {
-            clearInterval(interval);
-          }
-        }, delay);
-        afficheCache.style.display = "none";
-        tableau.style.display = "none";
-        _affiche.style.display = "initial";
-        loader.style.display = "initial";
-        setTimeout(function () {
-          _affiche.style.display = "";
-          loader.style.display = "none";
-        }, aleatoire + aleatoire / 5);
-        setTimeout(function () {
-          ctx.clearRect(0, 0, cvs.width, cvs.height);
-        }, aleatoire + aleatoire / 4.5);
-        setTimeout(function () {
-          afficheCache.style.display = "flex";
-        }, aleatoire);
-        setTimeout(function () {
-          tableau.style.display = "";
-        }, aleatoire);
+            if (i >= aleatoire + delay) {
+              clearInterval(interval);
+            }
+          }, delay);
+          afficheCache.style.display = "none";
+          tableau.style.display = "none";
+          _affiche.style.display = "initial";
+          loader.style.display = "initial";
+          setTimeout(function () {
+            _affiche.style.display = "";
+            loader.style.display = "none";
+          }, aleatoire + aleatoire / 5);
+          setTimeout(function () {
+            ctx.clearRect(0, 0, cvs.width, cvs.height);
+          }, aleatoire + aleatoire / 4.5);
+          setTimeout(function () {
+            afficheCache.style.display = "flex";
+          }, aleatoire);
+          setTimeout(function () {
+            tableau.style.display = "";
+          }, aleatoire);
+        }
       }
     }
   }
