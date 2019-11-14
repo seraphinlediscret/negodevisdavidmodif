@@ -25,7 +25,7 @@ let theEND = document.getElementById("theEND");
 //envoie de données//
 let priceshow =document.getElementById("validationCustom01");//prix initial
 let trapshow = document.getElementById("validationCustom02");//trappes
-let centshow = document.getElementById("validationCustom03");//rabais%
+let centshow = document.getElementById("validationCustom03");//trappe %
 let tourshow = document.getElementById("validationCustom04");//nombre de tour
 let priceminshow = document.getElementById("validationCustom05");//prix minimum de vente
 let timeshow = document.getElementById("validationCustom06");//le temps
@@ -45,10 +45,12 @@ let xprop = document.getElementById("xprop");// value prop (25000)
 let tablefind = [];
 
 // operation trappes //
-let optrap = priceminshow.value*centshow.value/100
-let nbtrap = trapshow.value;
+//let nbtrap = trapshow.value;
 
 let nbr = 20000; // remplacer par l'algo de Philippe
+let tableHidden = document.getElementById('table-hidden');
+let boxInfo = document.getElementById('allheaderelements');
+let acceptNEGO = document.getElementById("acceptNEGO");
 
 /////validation paramètres////
 function checkAllValid()
@@ -96,8 +98,8 @@ function openParam() {
     console.log(trapshow.value + " trappes");
     console.log(centshow.value + " % du prix minimum");
     console.log(priceminshow.value + " prix minimum");
-    console.log(priceminshow.value*centshow.value/100 + " prix à ne pas dépasser");
-
+    console.log(priceshow.value*centshow.value/100 + " prix à ne pas dépasser");
+    console.log(priceshow.value+"/"+centshow.value);
     //envoie de données//
 
     priceini.textContent = priceshow.value;
@@ -143,14 +145,14 @@ function action() {
         tableau.appendChild(tr);
     }
     ////////////trappes %////////////
-    if (nbtrap == 0){
+    if (trapshow.value == 0){
         window.location.reload();
     }
-    if (actionshow <= optrap) {
-        alert("Cette proposition n'est pas sérieuse il ne vous reste plus que "+"[ "+ nbtrap +" ] chance avant que la négociation soit annulée");
-        nbtrap--;
+    if (actionshow <= priceshow.value*centshow.value/100) {
+        alert("Cette proposition n'est pas sérieuse il ne vous reste plus que "+"[ "+ trapshow.value +" ] chance avant que la négociation soit annulée");
+        trapshow.value--;
         count --;
-        console.log(nbtrap +" décrémentation nombre de trap");
+        console.log( +" décrémentation nombre de trap");
     } else {
 
      ////value want > last value////
@@ -159,6 +161,9 @@ function action() {
      let last = tablefind[tablefind.length -1];
      if (count > 0) {
          tablefind.push(actionshow);
+        if (actionshow < last ) {
+            tablefind.pop(actionshow);
+        }
          console.log(last + " table");
         if (actionshow <= last ) {
             alert("Veuillez faire une proposition supérieure à l'ancienne !");
@@ -242,10 +247,14 @@ function action() {
     ///////decrementation compteur//////
 
     showcount.textContent--;
-    if(showcount.textContent < 1){
-
-      stop.style.display= "flex";
-      thenego.style.display = "none";
+    if(showcount.textContent < 0){
+      
+        boxInfo.style.display = "none";
+        stop.style.display = "flex";
+        tableHidden.style.display = "none";
+        yesorno.style.display="none"
+        thenego.style.display = "none";
+        affiche.style.display = "none";
 
       } else if (showcount.textContent == 1) {
 
@@ -305,15 +314,18 @@ function action() {
 ////////conditions//////////////
 
 function acceptNego() {
-//alert("Êtes-vous sur de vouloir accepter l'offre de " + "[" + pricewant.value + "] euros");
-//alert("prochainement");
+alert("Êtes-vous sur de vouloir accepter l'offre de 20000 euros");
 }
+
 
 function refusNego() {
     visibbutton.style.display ="flex";
     yesorno.style.display = "none";
 }
 ///les boutons///
+function acceptfinal() {
+    alert("Êtes-vous sur de vouloir accepter l'offre de 20000 euros");
+}
 
 valid.addEventListener("click", forcard);
 back.addEventListener("click", ret );
@@ -325,3 +337,4 @@ accept.addEventListener("click", acceptNego);
 refus.addEventListener("click", refusNego);
 theEND.addEventListener("click", closeNego);
 validaction.addEventListener("click", action);
+acceptNEGO.addEventListener("click", acceptfinal);

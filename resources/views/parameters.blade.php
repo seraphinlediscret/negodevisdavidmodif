@@ -20,7 +20,7 @@
         <h1 class="text-decoration-none  mr-auto ml-auto font-weight-bold mt-5">!! LA NÉGOCIATION EST TERMINÉ !!</h1>
        <h2 class="m-auto">Veuillez "accepter" ou "refuser" la dernière proposition.</h2>
         <div id="btnend" class="d-flex justify-content-around col col-12 mb-5 mt-5">
-          <button type="submit" class="btn btn-success accept col-5 p-3 font-weight-bold">Acceptez l'offre</button>
+          <button type="submit" class="btn btn-success accept col-5 p-3 font-weight-bold" id="acceptNEGO">Acceptez l'offre</button>
           <button type="submit" class="btn btn-danger refus col-5 p-3 font-weight-bold" id="theEND">Refuser l'offre</button>
        </div>
     </div>
@@ -70,7 +70,7 @@
 
 <!--TABLEAU DE NEGOCIATION-->
 <div class="tableau">
-<table class="table">
+<table id="table-hidden" class="table">
 <div id="thenego" class="mt-5">
       <div id="valprop" class="justify-content-around">
        <input class="font-weight-bold" type="number" id="validationCustom07" placeholder="Entrez une proposition" required>
@@ -137,7 +137,7 @@
             <div class="cardinput col-4">
               <label for="validationCustom01" class="titi control-label">Prix du devis :</label>
               <div class="input-group">
-              <input type="text" class="form-control field" id="validationCustom01" placeholder="Entrez votre prix initial" value="30000" required>
+              <input type="text" class="form-control field" id="validationCustom01" placeholder="Entrez votre prix initial" value="" required>
               <div class="input-group-append">
                 <span class="input-group-text unit">€</span>
               </div>
@@ -149,7 +149,7 @@
 
       <div class="cardinput col-4">
         <label for="validationCustom02" class="titi">Nombre de trappes</label>
-        <input type="number" class="form-control field nbt" id="validationCustom02" placeholder="Entrez votre nombre d'essais" value="3" required>
+        <input type="number" class="form-control field nbt" id="validationCustom02" placeholder="Entrez votre nombre d'essais" value="" required>
         <div class="valid-feedback">
             Validé !
         </div>
@@ -158,7 +158,7 @@
       <div class="cardinput col-4">
         <label for="validationCustom03" class="titi">Taux de la trappe</label>
         <div class="input-group mb-3">
-        <input type="number" class="form-control field" id="validationCustom03" placeholder="Entrez le taux de trappe" value="20" required>
+        <input type="number" class="form-control field" id="validationCustom03" placeholder="Entrez le taux de trappe" value="" required>
         <div class="input-group-append">
           <span class="input-group-text unitpour">%</span>
         </div>
@@ -172,7 +172,7 @@
 
       <div class="cardinput col-4">
         <label for="validationCustom04" class="titi">Nombre de tours</label>
-        <input type="number" class="form-control field" id="validationCustom04" placeholder="Entrez votre nombre de tours" value="5" required>
+        <input type="number" class="form-control field" id="validationCustom04" placeholder="Entrez votre nombre de tours" value="" required>
         <div class="valid-feedback">
             Validé !
         </div>
@@ -181,7 +181,7 @@
       <div class="cardinput col-4">
         <label for="validationCustom05" class="titi">Prix minimum de vente</label>
         <div class="input-group">
-        <input type="text" class="form-control field" id="validationCustom05" placeholder="Entrez votre prix minimum" value="20000" required>
+        <input type="text" class="form-control field" id="validationCustom05" placeholder="Entrez votre prix minimum" value="" required>
         <div class="input-group-append">
           <span class="input-group-text unitmin">€</span>
         </div>
@@ -193,7 +193,7 @@
 
       <div class="cardinput col-4">
         <label for="validationCustom06" class="titi">Temps de négociation (en min)</label>
-        <input type="number" class="form-control field" id="validationCustom06" placeholder="Entrez la durée de négociation" value="5" required>
+        <input type="number" class="form-control field" id="validationCustom06" placeholder="Entrez la durée de négociation" value="" required>
         <div class="valid-feedback">
             Validé !
         </div>

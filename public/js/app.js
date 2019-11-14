@@ -19310,7 +19310,7 @@ var priceshow = document.getElementById("validationCustom01"); //prix initial
 
 var trapshow = document.getElementById("validationCustom02"); //trappes
 
-var centshow = document.getElementById("validationCustom03"); //rabais%
+var centshow = document.getElementById("validationCustom03"); //trappe %
 
 var tourshow = document.getElementById("validationCustom04"); //nombre de tour
 
@@ -19339,11 +19339,13 @@ var xprop = document.getElementById("xprop"); // value prop (25000)
 // array empty//
 
 var tablefind = []; // operation trappes //
+//let nbtrap = trapshow.value;
 
-var optrap = priceminshow.value * centshow.value / 100;
-var nbtrap = trapshow.value;
 var nbr = 20000; // remplacer par l'algo de Philippe
-/////validation paramètres////
+
+var tableHidden = document.getElementById('table-hidden');
+var boxInfo = document.getElementById('allheaderelements');
+var acceptNEGO = document.getElementById("acceptNEGO"); /////validation paramètres////
 
 function checkAllValid() {
   var allValid = true;
@@ -19389,7 +19391,8 @@ function closeParam() {
   console.log(trapshow.value + " trappes");
   console.log(centshow.value + " % du prix minimum");
   console.log(priceminshow.value + " prix minimum");
-  console.log(priceminshow.value * centshow.value / 100 + " prix à ne pas dépasser"); //envoie de données//
+  console.log(priceshow.value * centshow.value / 100 + " prix à ne pas dépasser");
+  console.log(priceshow.value + "/" + centshow.value); //envoie de données//
 
   priceini.textContent = priceshow.value;
   showcount.textContent = tourshow.value;
@@ -19432,15 +19435,15 @@ function action() {
   } ////////////trappes %////////////
 
 
-  if (nbtrap == 0) {
+  if (trapshow.value == 0) {
     window.location.reload();
   }
 
-  if (actionshow <= optrap) {
-    alert("Cette proposition n'est pas sérieuse il ne vous reste plus que " + "[ " + nbtrap + " ] chance avant que la négociation soit annulée");
-    nbtrap--;
+  if (actionshow <= priceshow.value * centshow.value / 100) {
+    alert("Cette proposition n'est pas sérieuse il ne vous reste plus que " + "[ " + trapshow.value + " ] chance avant que la négociation soit annulée");
+    trapshow.value--;
     count--;
-    console.log(nbtrap + " décrémentation nombre de trap");
+    console.log(+" décrémentation nombre de trap");
   } else {
     ////value want > last value////
     var discount = Math.round((priceini.textContent - nbr) * 100 / priceini.textContent);
@@ -19448,6 +19451,11 @@ function action() {
 
     if (count > 0) {
       tablefind.push(actionshow);
+
+      if (actionshow < last) {
+        tablefind.pop(actionshow);
+      }
+
       console.log(last + " table");
 
       if (actionshow <= last) {
@@ -19530,9 +19538,13 @@ function action() {
 
         showcount.textContent--;
 
-        if (showcount.textContent < 1) {
+        if (showcount.textContent < 0) {
+          boxInfo.style.display = "none";
           stop.style.display = "flex";
+          tableHidden.style.display = "none";
+          yesorno.style.display = "none";
           thenego.style.display = "none";
+          _affiche.style.display = "none";
         } else if (showcount.textContent == 1) {
           stop.style.display = "none";
         }
@@ -19591,8 +19603,8 @@ function action() {
 } ////////conditions//////////////
 
 
-function acceptNego() {//alert("Êtes-vous sur de vouloir accepter l'offre de " + "[" + pricewant.value + "] euros");
-  //alert("prochainement");
+function acceptNego() {
+  alert("Êtes-vous sur de vouloir accepter l'offre de 20000 euros");
 }
 
 function refusNego() {
@@ -19600,6 +19612,10 @@ function refusNego() {
   yesorno.style.display = "none";
 } ///les boutons///
 
+
+function acceptfinal() {
+  alert("Êtes-vous sur de vouloir accepter l'offre de 20000 euros");
+}
 
 valid.addEventListener("click", forcard);
 back.addEventListener("click", ret);
@@ -19611,6 +19627,7 @@ accept.addEventListener("click", acceptNego);
 refus.addEventListener("click", refusNego);
 theEND.addEventListener("click", closeNego);
 validaction.addEventListener("click", action);
+acceptNEGO.addEventListener("click", acceptfinal);
 
 /***/ }),
 
