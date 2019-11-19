@@ -106,7 +106,7 @@
       <th scope="col" class="titletable buy"><div class="cell buyer-price-cell">Prix Acheteur</div></th>
       <th scope="col" class="titletable  text-center"><div class="cell counter-cell">0</div></th>
       <th scope="col" class="titletable want"><div class="cell wanted-price-cell">Prix proposé</div></th>
-      <th scope="col" class="titletable sold"><div class="cell sold-cell">Rabais %</div></th>
+      <th scope="col" class="titletable sold"><div class="cell sold-cell">Remise obtenue %</div></th>
     </tr>
   </thead>
   <tbody id="theTABLE">

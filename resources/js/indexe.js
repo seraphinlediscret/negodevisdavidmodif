@@ -145,29 +145,34 @@ function action() {
         tableau.appendChild(tr);
     }
     ////////////trappes %////////////
-    if (trapshow.value == 0){
-        window.location.reload();
-    }
-    if (actionshow <= priceshow.value*centshow.value/100) {
+    
+   if (Number(actionshow) <= priceshow.value*centshow.value/100) {
         alert("Cette proposition n'est pas sérieuse il ne vous reste plus que "+"[ "+ trapshow.value +" ] chance avant que la négociation soit annulée");
         trapshow.value--;
         count --;
         console.log( +" décrémentation nombre de trap");
+      
+        if (trapshow.value < 0){
+        window.location.reload();
+    }
     } else {
 
      ////value want > last value////
      let discount = Math.round((priceini.textContent - nbr)*100/priceini.textContent);
-    
      let last = tablefind[tablefind.length -1];
+     tablefind.push(Number(actionshow));
+     console.log(last + " table");
+     if (Number(actionshow) < last ) {
+         tablefind.pop(Number(actionshow));
+     }
+
+     
+
      if (count > 0) {
-         tablefind.push(actionshow);
-        if (actionshow < last ) {
-            tablefind.pop(actionshow);
-        }
-         console.log(last + " table");
-        if (actionshow <= last ) {
+        if (Number(actionshow) <= last ) {
             alert("Veuillez faire une proposition supérieure à l'ancienne !");
             count --;
+
          } else {
              
     document.getElementById("validationCustom07").value = "";
@@ -180,7 +185,7 @@ function action() {
     var tdtwo = document.createElement("TD");
     var vend = document.createTextNode(pricetest);
     var tdthree = document.createElement("TD");
-    var t = document.createTextNode(actionshow);
+    var t = document.createTextNode(Number(actionshow));
     var tdfour = document.createElement("TD");
     var want = document.createTextNode(nbr); //// api de Philippe à rajouter
     var tdfive = document.createElement("TD");
@@ -244,25 +249,7 @@ function action() {
     visibbutton.style.display = "none";
     yesorno.style.display = "flex";
 
-    ///////decrementation compteur//////
-
-    showcount.textContent--;
-    if(showcount.textContent < 0){
-      
-        boxInfo.style.display = "none";
-        stop.style.display = "flex";
-        tableHidden.style.display = "none";
-        yesorno.style.display="none"
-        thenego.style.display = "none";
-        affiche.style.display = "none";
-
-      } else if (showcount.textContent == 1) {
-
-    stop.style.display= "none";
-     }
-
-     console.log(count +" compteur");
-
+   
     //  ////////////loader/////////////
      const aleatoire = Math.floor(Math.random() * 4000) + 5000;;
      const delay = 4;
@@ -296,6 +283,25 @@ function action() {
          setTimeout(function(){
              affiche.style.display="";
              loader.style.display = "none";
+              ///////decrementation compteur//////
+
+            showcount.textContent--;
+            if(showcount.textContent < 0){
+      
+            boxInfo.style.display = "none";
+            stop.style.display = "flex";
+            tableHidden.style.display = "none";
+            yesorno.style.display="none"
+            thenego.style.display = "none";
+            affiche.style.display = "none";
+
+            } else if (showcount.textContent == 1) {
+
+                stop.style.display= "none";
+            }
+
+     console.log(count +" compteur");
+
          }, aleatoire+(aleatoire/5));
          setTimeout(function(){
              ctx.clearRect(0,0,cvs.width, cvs.height);
@@ -314,7 +320,8 @@ function action() {
 ////////conditions//////////////
 
 function acceptNego() {
-alert("Êtes-vous sur de vouloir accepter l'offre de 20000 euros");
+    alert("Êtes-vous sur de vouloir accepter l'offre de _ _ _ euros");
+    // + "[" + negoprice + "]" + à mettre entre le mot offre et euro Philippe
 }
 
 
@@ -323,8 +330,9 @@ function refusNego() {
     yesorno.style.display = "none";
 }
 ///les boutons///
-function acceptfinal() {
-    alert("Êtes-vous sur de vouloir accepter l'offre de 20000 euros");
+function acceptFinal() {
+    alert("Êtes-vous sur de vouloir accepter l'offre de _ _ _ euros");
+    // + "[" + negoprice + "]" + à mettre entre le mot offre et euro Philippe
 }
 
 valid.addEventListener("click", forcard);
@@ -337,4 +345,4 @@ accept.addEventListener("click", acceptNego);
 refus.addEventListener("click", refusNego);
 theEND.addEventListener("click", closeNego);
 validaction.addEventListener("click", action);
-acceptNEGO.addEventListener("click", acceptfinal);
+acceptNEGO.addEventListener("click", acceptFinal);
